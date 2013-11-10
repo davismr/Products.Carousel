@@ -36,6 +36,7 @@ class CarouselViewlet(ViewletBase):
         """
 
         self.available = False
+        self.acquired = False
 
         context_state = self.context.restrictedTraverse('@@plone_context_state')
         if context_state.is_structural_folder() and not context_state.is_default_page():
@@ -47,12 +48,20 @@ class CarouselViewlet(ViewletBase):
             carousel = ICarousel(folder[CAROUSEL_ID], None)
             if not carousel:
                 return
+        elif hasattr(folder, CAROUSEL_ID):
+            carousel = ICarousel(getattr(folder, CAROUSEL_ID), None)
+            self.acquired = True
+            if not carousel:
+                return
         else:
             return
 
         settings = carousel.getSettings()
 
         if not settings.enabled:
+            return
+
+        if self.acquired and not settings.sub_folder_acquire:
             return
 
         if not context_state.is_default_page():

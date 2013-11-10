@@ -4,6 +4,8 @@ Change history
 2.2.2 (unreleased)
 ------------------
 
+- Add capability for sub folders to acquire the carousel [davismr]
+
 - Added German translation.
   [pabo3000]
 

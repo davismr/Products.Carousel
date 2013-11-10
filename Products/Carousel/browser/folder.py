@@ -78,6 +78,7 @@ class CarouselSettings(Persistent):
     transition_speed = 0.5
     transition_delay = 8.0
     default_page_only = True
+    sub_folder_acquire = False
     lazyload = False
     random_order = False
 
@@ -118,9 +119,10 @@ class DisplayGroup(group.Group):
 
     label = _(u'Display')
     fields = field.Fields(ICarouselSettings).select(
-        'enabled', 'default_page_only')
+        'enabled', 'default_page_only', 'sub_folder_acquire')
     fields['enabled'].widgetFactory = SingleCheckBoxFieldWidget
     fields['default_page_only'].widgetFactory = SingleCheckBoxFieldWidget
+    fields['sub_folder_acquire'].widgetFactory = SingleCheckBoxFieldWidget
 
 
 class CarouselSettingsForm(group.GroupForm, form.EditForm):

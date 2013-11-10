@@ -113,6 +113,12 @@ class ICarouselSettings(Interface):
         default=True,
     )
 
+    sub_folder_acquire = schema.Bool(
+        title=_(u'Acquired by sub folders'),
+        description=_(u'Allow sub folders to acquire the banner'),
+        default=False,
+    )
+
     random_order = schema.Bool(
         title=_(u'Random order'),
         description=_(u'Carousel pictures will reappear in random order on every page refresh.'),
